@@ -1,24 +1,45 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import Home from './components/home';
+import Login from './components/login';
 import './App.css';
+import { ProvideAuth, useAuth } from "./providers/auth";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProvideAuth>
+      <BrowserRouter>
+        <Switch>
+          <PrivateRoute path="/" exact>
+            <Home />
+          </PrivateRoute>
+          <Route path="/login" component={Login} exact />
+          {/*<Route path="/about" component={About} />*/}
+        </Switch>
+      </BrowserRouter>
+    </ProvideAuth>
+  );
+}
+
+function PrivateRoute({ children, ...rest }) {
+  let auth = useAuth();
+  console.log(auth.user);
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
   );
 }
 
