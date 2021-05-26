@@ -58,14 +58,12 @@ function useProvideAuth() {
   // ... latest auth object.
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    console.log('useEffect ' + loggedInUser);
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      console.log('loggedInUser ' + loggedInUser);
       setUser(foundUser);
     }
   }, []);
-
+  
   // Return the user object and auth methods
   return {
     user,

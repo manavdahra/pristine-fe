@@ -21,11 +21,11 @@
       "id": "T_002",
       "name": "Pristine",
       "colors": {
-        "body": "#3a1f04",        
+        "body": "#e1e2e1",        
         "text": "#eaceaa",
         "button": {
           "text": "#03292C",
-          "background": "#eaceaa"
+          "background": "#e2c52d"
         },
         "link": {
           "text": "#e2c52d",

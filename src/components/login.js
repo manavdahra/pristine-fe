@@ -18,7 +18,7 @@ function Login() {
 			});
 	};
 	return (
-		<div className="App">
+		<div className="login-page">
 			<div className='centre-div'>
 				<div className='banner-image'></div>
 				<div className='center-horizontal'>
@@ -30,11 +30,11 @@ function Login() {
 				        cookiePolicy={'single_host_origin'}
 				        render={renderProps => (
       						<button 
-      							className='sign-in-button'
+      							className='button sign-in-button'
       							onClick={renderProps.onClick} 
       							disabled={renderProps.disabled}>
       							<FontAwesomeIcon icon={faGoogle} />&nbsp;
-      							Google Sign In
+								Sign In
       						</button>
     					)}
 			    	>
