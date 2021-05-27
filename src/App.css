@@ -4,11 +4,9 @@
 .dark-green {
   color: #02272f;
 }
-
 .golden {
   color: #e2c52d;
 }
-
 .gray {
   background-color: #e1e2e1;
 }
@@ -78,29 +76,17 @@
   box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
   background-color: #02272f;
 }
-
-.aside-item:hover {
-  filter: brightness(85%);
-  background-color: #02272ff0;
-}
 .aside-logo {
-  width: 100%;
+  width: 200px;
 }
-.aside-logo:hover {
+.aside-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+}
+.nav-link:focus, .nav-link:hover {
+  color: #e2c52d;
+}
+.navbar-nav:focus, .navbar-nav:hover {
   filter: brightness(85%);
-  background-color: #02272ff0;
-}
-.aside-item-active  {
-  opacity: 0;
-  transition: opacity 800ms;
-  text-align: left;
-}
-.aside-item:hover .aside-item-active {
-  opacity: 1.0;
-}
-
-.vbottom{
-  width: auto;
-    position: absolute;
-    bottom: 0;
 }

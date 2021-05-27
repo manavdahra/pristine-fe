@@ -8,14 +8,18 @@ function Home() {
 	let location = useLocation();
 	
 	return (
-		<div className='container-fluid p-0 gray vh-100'>
-			<div className='row h-100'>
+		<div className='container-fluid gray'>
+			<div className='row'>
 				<Navigator />
-				<main className='col-md-9 col-sm-12 ml-sm-auto col-lg-10 pt-3 px-4 main'>
-					<Switch>
-			            <Route path="/dashboard" exact component={Dashboard} />
-			            {/*<Route path="/aboutUs" component={Dashboard} exact />*/}
-				    </Switch>
+				<main className='col-12'>
+					<div className='row'>
+						<div className='col-12'>
+							<Switch>
+					            <Route path="/dashboard" exact component={Dashboard} />
+					            {/*<Route path="/aboutUs" component={Dashboard} exact />*/}
+						    </Switch>
+						</div>
+					</div>
 				</main>
 			</div>
 		</div>
