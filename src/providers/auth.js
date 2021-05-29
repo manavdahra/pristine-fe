@@ -18,7 +18,12 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
 
-  const [user, setUser] = useState(null);
+  let foundUser = null;
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    foundUser = JSON.parse(loggedInUser);
+  }
+  const [user, setUser] = useState(foundUser);
   
   // Wrap any Firebase methods we want to use making sure ...
   // ... to save the user to state.
@@ -28,7 +33,7 @@ function useProvideAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idToken: idToken })
     };
-    return fetch('http://localhost:8080/api/login', requestOptions)
+    return fetch('http://localhost:8080/api/signIn', requestOptions)
       .then(response => response.json())
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user));
@@ -37,15 +42,14 @@ function useProvideAuth() {
       })
   };
 
-  const signout = (idToken) => {
+  const signout = (email) => {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idToken: idToken })
+        body: JSON.stringify({ email: email })
     };
-    return fetch('http://localhost:8080/api/logout', requestOptions)
-      .then(response => response.json())
-      .then(user => {
+    return fetch('http://localhost:8080/api/signOut', requestOptions)
+      .then(() => {
         localStorage.clear();
         setUser(null);
         return null;

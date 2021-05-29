@@ -10,13 +10,14 @@ function Login() {
 	let location = useLocation();
 	let auth = useAuth();
 
-	let { from } = location.state || { from: { pathname: "/" } };
+	let { from } = location.state || { from: { pathname: "/home" } };
 	let login = (googleResp) => {
 		auth.signin(googleResp.tokenId)
 			.then(() => {
 				history.replace(from);
 			});
 	};
+
 	return (
 		<div className="login-page">
 			<div className='centre-div'>

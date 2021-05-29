@@ -14,24 +14,6 @@ import { GlobalStyles } from './theme/globalStyles';
 import { useTheme } from './theme/useTheme';
 import './App.css';
 
-function RenderRoutes() {
-  let auth = useAuth();
-  if (!auth.user) {
-    return (
-      <Route path="/login" component={Login} />
-    );
-  }
-
-  return (
-    <Switch>
-      <PrivateRoute path="/" >
-        <Home />
-      </PrivateRoute>
-      <Route path="/login" component={Login} exact/>
-    </Switch>
-  );
-}
-
 function App() {
   const {theme, themeLoaded, getFonts} = useTheme();
   const [selectedTheme, setSelectedTheme] = useState(theme);
@@ -56,7 +38,11 @@ function App() {
         <div style={{fontFamily: selectedTheme.font}}>
           <ProvideAuth>
             <Router>
-              <RenderRoutes />
+              <Route path='/login' component={Login} exact />
+              <PrivateRoute path="/home" >
+                <Home />
+              </PrivateRoute>
+              <Route render={() => <Redirect to="/home" />} />
             </Router>
           </ProvideAuth>
         </div>

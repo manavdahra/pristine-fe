@@ -1,12 +1,10 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Dashboard from './dashboard';
 import Navigator from './navigator';
 
 function Home() {
-	let history = useHistory();
-	let location = useLocation();
-	
+	console.log('inside home');
 	return (
 		<div className='container-fluid gray'>
 			<div className='row'>
@@ -15,7 +13,8 @@ function Home() {
 					<div className='row'>
 						<div className='col-12'>
 							<Switch>
-					            <Route path="/dashboard" exact component={Dashboard} />
+								<Route path="/home" component={Dashboard} />
+					            <Route path="/home/dashboard" component={Dashboard} exact />
 					            {/*<Route path="/aboutUs" component={Dashboard} exact />*/}
 						    </Switch>
 						</div>
