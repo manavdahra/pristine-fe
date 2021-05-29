@@ -33,7 +33,7 @@ function useProvideAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idToken: idToken })
     };
-    return fetch('http://localhost:8080/api/signIn', requestOptions)
+    return fetch('http://34.126.173.210:8080/api/signIn', requestOptions)
       .then(response => response.json())
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user));
@@ -48,7 +48,7 @@ function useProvideAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
     };
-    return fetch('http://localhost:8080/api/signOut', requestOptions)
+    return fetch('http://34.126.173.210:8080/api/signOut', requestOptions)
       .then(() => {
         localStorage.clear();
         setUser(null);
