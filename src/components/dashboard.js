@@ -1,9 +1,10 @@
 function Dashboard() {
-	console.log('inside dashboard');
 	return (
-		<h2>
-	      Pristine!
-		</h2>
+		<div className='row'>
+			<div className='col-1'></div>
+			<div className='col-10'>Dashboard</div>
+			<div className='col-1'></div>
+		</div>
 	);
 }
 

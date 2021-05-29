@@ -28,7 +28,7 @@ function Home() {
 							About Us
 						</div>
 						<div className='col-6 text-left'>
-							@ Copyright
+							&copy;Copyright 2021, Pristine
 						</div>
 					</div>
 				</div>
