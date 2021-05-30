@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const authContext = createContext();
 
 // Provider component that wraps your app and makes auth object ...
@@ -33,7 +34,7 @@ function useProvideAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idToken: idToken })
     };
-    return fetch('http://34.126.173.210:8080/api/signIn', requestOptions)
+    return fetch(API_ENDPOINT+'/api/signIn', requestOptions)
       .then(response => response.json())
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user));
@@ -48,7 +49,7 @@ function useProvideAuth() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
     };
-    return fetch('http://34.126.173.210:8080/api/signOut', requestOptions)
+    return fetch(API_ENDPOINT+'/api/signOut', requestOptions)
       .then(() => {
         localStorage.clear();
         setUser(null);

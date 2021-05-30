@@ -24,10 +24,10 @@ function Home() {
 			<footer className='footer'>
 				<div className='container-fluid'>
 					<div className='row text-muted m-2 d-flex justify-content-around'>
-						<div className='col-6 text-right'>
+						<div>
 							About Us
 						</div>
-						<div className='col-6 text-left'>
+						<div>
 							&copy;Copyright 2021, Pristine
 						</div>
 					</div>

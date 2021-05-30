@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useHistory, useLocation } from "react-router-dom";
 import { useAuth } from '../providers/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faSun } from '@fortawesome/free-solid-svg-icons'
 
 function Login() {
 	let history = useHistory();
 	let location = useLocation();
 	let auth = useAuth();
+	let [authorizing, setAuthorizing] = useState(false);
 
 	let { from } = location.state || { from: { pathname: "/home" } };
 	let login = (googleResp) => {
 		auth.signin(googleResp.tokenId)
 			.then(() => {
+				setAuthorizing(false);
 				history.replace(from);
 			});
 	};
@@ -32,10 +35,15 @@ function Login() {
 				        render={renderProps => (
       						<button 
       							className='button sign-in-button'
-      							onClick={renderProps.onClick} 
+      							onClick={(ev) => {
+      								setAuthorizing(true);
+      								renderProps.onClick(ev);
+      							}} 
       							disabled={renderProps.disabled}>
       							<FontAwesomeIcon icon={faGoogle} />&nbsp;
-								Sign In
+								<span>Sign In&nbsp;
+									<FontAwesomeIcon icon={faSun} className={'fa-spin' + (authorizing ? ' d-inline-block': ' d-none')} />
+								</span>
       						</button>
     					)}
 			    	>

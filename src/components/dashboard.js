@@ -1,9 +1,10 @@
 function Dashboard() {
 	return (
-		<div className='row'>
-			<div className='col-1'></div>
-			<div className='col-10'>Dashboard</div>
-			<div className='col-1'></div>
+		<div className='row m-3'>
+			<div className='col-12 jumbotron dark-gray'>
+				<h1>Dashboard</h1>
+				<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+			</div>
 		</div>
 	);
 }

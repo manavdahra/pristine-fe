@@ -20,13 +20,12 @@
     "web-vitals": "^1.0.1",
     "webfontloader": "^1.6.28"
   },
-  "homepage": "https://storage.googleapis.com/pristine-fe",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gsutil rm 'gs://pristine-fe/**' && gsutil rsync -R build gs://pristine-fe"
+    "deploy": "gsutil rm 'gs://pristine-fe/**' && gsutil rsync -R build gs://pristine-fe && gsutil setmeta -h Cache-Control:'Cache-Control:private, max-age=0, no-transform' 'gs://pristine-fe/**'"
   },
   "eslintConfig": {
     "extends": [

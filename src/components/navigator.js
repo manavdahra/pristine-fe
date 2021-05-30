@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { useAuth } from '../providers/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
 
 function Navigator() {
-  let [ redirect, setRedirect ] = useState(null); 
   let auth = useAuth();
+  let history = useHistory();
+  let [waiting, setWaiting] = useState(false);
 
   const logout = function() {
+    setWaiting(true);
     auth.signout(auth.user.email)
       .then(() => {
-        setRedirect(true);
+        setWaiting(false);
+        history.replace({ from: { pathname: "/" } });
       });
-  }
-
-  if (redirect) {
-    return <Redirect to='/login' exact />
   }
 
   return (
