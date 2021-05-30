@@ -9,7 +9,7 @@ const Index = () => {
   setToLS('all-themes', themes.default);
   return(
     <App />
-  )
+  );
 }
 
 ReactDOM.render(

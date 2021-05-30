@@ -20,11 +20,13 @@
     "web-vitals": "^1.0.1",
     "webfontloader": "^1.6.28"
   },
+  "homepage": "https://storage.googleapis.com/pristine-fe",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gsutil rm 'gs://pristine-fe/**' && gsutil rsync -R build gs://pristine-fe"
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.7.0"
   }
 }
