@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../providers/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPowerOff } from '@fortawesome/free-solid-svg-icons'
+import { faPowerOff, faSun } from '@fortawesome/free-solid-svg-icons'
 
 function Navigator() {
+  let isMounted = useRef(true);
   let auth = useAuth();
   let history = useHistory();
   let [waiting, setWaiting] = useState(false);
+
+  useEffect(() => {
+    return () => { isMounted.current = false; };
+  });
 
   const logout = function() {
     setWaiting(true);
     auth.signout(auth.user.email)
       .then(() => {
-        setWaiting(false);
+        if (isMounted.current) {
+          setWaiting(false);
+        }
         history.replace({ from: { pathname: "/" } });
       });
   }
@@ -37,10 +44,12 @@ function Navigator() {
         </li>
       </ul>
       <div className='navbar-nav'>
-        <button className="d-none d-md-block button sign-in-button" onClick={logout}>
-          <span>Logout</span>
+        <button className="d-none d-md-block btn button sign-in-button" onClick={logout}>
+          <span>Logout&nbsp;
+            <FontAwesomeIcon icon={faSun} className={'fa-spin' + (waiting ? ' d-inline-block': ' d-none')} />
+          </span>
         </button>
-        <Link className="nav-link golden d-xs-block d-md-none" to='/#' onClick={logout}>
+        <Link className="nav-link golden d-xs-block d-md-none" to='#' onClick={logout}>
           <FontAwesomeIcon icon={faPowerOff} />
         </Link>
       </div>

@@ -3,7 +3,7 @@ function Dashboard() {
 		<div className='row m-3'>
 			<div className='col-12 jumbotron dark-gray'>
 				<h1>Dashboard</h1>
-				<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+				<p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
 			</div>
 		</div>
 	);
